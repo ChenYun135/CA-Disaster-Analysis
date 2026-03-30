@@ -44,11 +44,11 @@ try:
     year_range = st.sidebar.slider("选择年份区间:", 1926, 2026, (1926, 2026))
     f_df = df[(df['year'] >= year_range[0]) & (df['year'] <= year_range[1])]
 
-    fig = px.scatter_mapbox(f_df, lat="lat", lon="lon", size="mag", color="mag",
-                            color_continuous_scale="Reds", hover_name="place",
-                            zoom=5, height=600)
-    fig.update_layout(mapbox_style="carto-positron")
-    st.plotly_chart(fig, use_container_width=True)
+fig = px.scatter_map(f_df, lat="lat", lon="lon", size="mag", color="mag",
+                     color_continuous_scale="Reds", hover_name="place",
+                     zoom=5, height=600)
+# ...
+st.plotly_chart(fig, width="stretch")
     
     st.success(f"成功加载 {len(f_df)} 条地震记录")
 except Exception as e:
